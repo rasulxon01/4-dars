@@ -7,19 +7,26 @@ Original file is located at
     https://colab.research.google.com/drive/18lI8mQdv7q4K0WJiBrXD21h4mMMxIs5Q
 """
 
-import numpy as np
+import pandas as pd
 
-# 1. Massiv yaratish
-array_1d = np.array([1, 2, 3, 4, 5])
-array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+# 1. DataFrame yaratish
+data = {
+    'Ism': ['Ali', 'Vali', 'Sardor'],
+    'Yoshi': [25, 30, 22],
+    'Shahar': ['Toshkent', 'Samarqand', 'Buxoro']
+}
+df = pd.DataFrame(data)
 
-# 2. Matematik operatsiyalar
-sum_array = np.sum(array_1d)
-mean_array = np.mean(array_1d)
-product_array = np.prod(array_1d)
+# 2. Ma'lumotlarni ko'rish
+print(df)
 
-print("1D Massiv: ", array_1d)
-print("2D Massiv:\n", array_2d)
-print("Massivlar yig'indisi: ", sum_array)
-print("O'rtacha: ", mean_array)
-print("Ko'paytma: ", product_array)
+# 3. Filtrlash
+young_people = df[df['Yoshi'] < 30]
+print("30 yoshdan kichiklar:\n", young_people)
+
+# 4. O'zgartirish
+df['Yoshi'] += 1  # Har bir shaxsning yoshini 1 ga oshirish
+print("Yangilangan DataFrame:\n", df)
+
+# 5. CSV formatda saqlash
+df.to_csv('data.csv', index=False)
